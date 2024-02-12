@@ -1,6 +1,9 @@
 let computerSelection = "";
 let playerSelection = "";
 let result = "";
+let gameResult = "";
+let computerResult = 0;
+let playerResult = 0;
 
 function getComputerChoice() {
     const choice = ['rock', 'paper', 'scissors'];
@@ -38,8 +41,36 @@ function playRound(computerSelection, playerSelection) {
     return result;
 }
 
-getComputerChoice();
-getPlayerInput();
-console.log("computer: ", computerSelection);
-console.log("player: ", playerSelection);
-console.log(playRound(computerSelection, playerSelection));
+let playGame = () => {
+    for(let i = 0; i < 5; i++){
+        getComputerChoice();
+        getPlayerInput();
+        playRound(computerSelection, playerSelection);
+        if (result === "It's a draw!"){
+            computerResult += 1;
+            playerResult += 1;
+        }
+        else if (result === "Computer wins!"){
+            computerResult += 1;
+        }
+        else {
+            playerResult += 1;
+        }
+    }
+    if (computerResult > playerResult){
+        gameResult = "Computer is the winner! All hail beep beep bop bop!";
+    }
+
+    else if (computerResult === playerResult){
+        gameResult = "It's a draw!!!";
+    }
+
+    else {
+        gameResult = "Humanity prevails! Autobots roll out!";
+    }
+    console.log("player results: ", playerResult);
+    console.log("computer results : ", computerResult);
+    return gameResult;
+};
+
+console.log(playGame());
