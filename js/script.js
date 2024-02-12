@@ -6,17 +6,20 @@ let computerResult = 0;
 let playerResult = 0;
 
 function getComputerChoice() {
+    // get a random value for computer choices
     const choice = ['rock', 'paper', 'scissors'];
     const result = Math.floor(Math.random() * choice.length);
     return computerSelection = choice[result];
 }
 
 function getPlayerInput(input) {
+    //get input value from player and returns it into lower case
     playerInput = prompt("Choose between paper, rock, or scissors: ");
     return playerSelection = playerInput.toLowerCase();
 }
 
 function playRound(computerSelection, playerSelection) {
+    //game logic using if else
     if (computerSelection === playerSelection) {
         result = "It's a draw!";
     }
@@ -43,6 +46,7 @@ function playRound(computerSelection, playerSelection) {
 
 let playGame = () => {
     for(let i = 0; i < 5; i++){
+        //loop the game 5 times
         getComputerChoice();
         getPlayerInput();
         playRound(computerSelection, playerSelection);
@@ -68,9 +72,11 @@ let playGame = () => {
     else {
         gameResult = "Humanity prevails! Autobots roll out!";
     }
+    // calculate the final game results
     console.log("player results: ", playerResult);
     console.log("computer results : ", computerResult);
     return gameResult;
 };
 
+//play the game
 console.log(playGame());
