@@ -13,9 +13,10 @@ function getComputerChoice() {
 }
 
 function getPlayerInput(input) {
-    //get input value from player and returns it into lower case
+    /*
     playerInput = prompt("Choose between paper, rock, or scissors: ");
-    return playerSelection = playerInput.toLowerCase();
+    return playerSelection = playerInput.toLowerCase();*/
+
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -45,24 +46,23 @@ function playRound(computerSelection, playerSelection) {
 }
 
 let playGame = () => {
-    for(let i = 0; i < 5; i++){
-        //loop the game 5 times
-        getComputerChoice();
-        getPlayerInput();
-        playRound(computerSelection, playerSelection);
-        if (result === "It's a draw!"){
-            computerResult += 1;
-            playerResult += 1;
-        }
-        else if (result === "Computer wins!"){
-            computerResult += 1;
-        }
-        else {
-            playerResult += 1;
-        }
+    getComputerChoice();
+    //getPlayerInput();
+    console.log('player: ', playerSelection);
+    console.log('comp:', computerSelection);
+    playRound(computerSelection, playerSelection);
+    if (result === "It's a draw!"){
+        computerResult += 0;
+        playerResult += 0;
+    }
+    else if (result === "Computer wins!"){
+        computerResult += 1;
+    }
+    else {
+        playerResult += 1;
     }
     if (computerResult > playerResult){
-        gameResult = "Computer is the winner! All hail beep beep bop bop!";
+        gameResult = "Computer is the winner! Beep beep bop bop!";
     }
 
     else if (computerResult === playerResult){
@@ -78,5 +78,23 @@ let playGame = () => {
     return gameResult;
 };
 
-//play the game
-console.log(playGame());
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
+
+rock.addEventListener('click', () => {
+    playerSelection = 'rock';
+    playGame();
+});
+
+paper.addEventListener('click', () => {
+    playerSelection = 'paper';
+    playGame();
+});
+
+scissor.addEventListener('click', () => {
+    playerSelection = 'scissor';
+    playGame();
+});
+
+
