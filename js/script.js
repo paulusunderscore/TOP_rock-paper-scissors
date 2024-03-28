@@ -1,22 +1,21 @@
 let computerSelection = "";
 let playerSelection = "";
 let result = "";
-let gameResult = "";
 let computerResult = 0;
 let playerResult = 0;
+
+const container = document.querySelector('#container');
+const matchResult = document.createElement('div');
+const winner = document.createElement('div');
+container.appendChild(matchResult);
+container.appendChild(winner);
+
 
 function getComputerChoice() {
     // get a random value for computer choices
     const choice = ['rock', 'paper', 'scissors'];
     const result = Math.floor(Math.random() * choice.length);
     return computerSelection = choice[result];
-}
-
-function getPlayerInput(input) {
-    /*
-    playerInput = prompt("Choose between paper, rock, or scissors: ");
-    return playerSelection = playerInput.toLowerCase();*/
-
 }
 
 function playRound(computerSelection, playerSelection) {
@@ -42,12 +41,14 @@ function playRound(computerSelection, playerSelection) {
     else if (computerSelection === "scissors" && playerSelection === "paper") {
         result = "Computer wins!";
     }
+    matchResult.textContent = result;
     return result;
 }
 
 let playGame = () => {
+    
+    
     getComputerChoice();
-    //getPlayerInput();
     console.log('player: ', playerSelection);
     console.log('comp:', computerSelection);
     playRound(computerSelection, playerSelection);
@@ -61,26 +62,27 @@ let playGame = () => {
     else {
         playerResult += 1;
     }
-    if (computerResult > playerResult){
-        gameResult = "Computer is the winner! Beep beep bop bop!";
+    if (computerResult === 5){
+        winner.textContent = "Computer is the winner! Beep beep bop bop!";
+        computerResult = 0;
+        playerResult = 0;
+
     }
 
-    else if (computerResult === playerResult){
-        gameResult = "It's a draw!!!";
+    else if (playerResult === 5){
+        winner.textContent = "Humanity prevails! Autobots roll out!";
+        computerResult = 0;
+        playerResult = 0;
     }
 
-    else {
-        gameResult = "Humanity prevails! Autobots roll out!";
-    }
     // calculate the final game results
     console.log("player results: ", playerResult);
     console.log("computer results : ", computerResult);
-    return gameResult;
 };
 
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
-const scissor = document.querySelector('#scissor');
+const scissors = document.querySelector('#scissors');
 
 rock.addEventListener('click', () => {
     playerSelection = 'rock';
@@ -92,8 +94,8 @@ paper.addEventListener('click', () => {
     playGame();
 });
 
-scissor.addEventListener('click', () => {
-    playerSelection = 'scissor';
+scissors.addEventListener('click', () => {
+    playerSelection = 'scissors';
     playGame();
 });
 
