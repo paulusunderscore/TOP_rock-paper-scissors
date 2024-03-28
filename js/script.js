@@ -7,8 +7,11 @@ let playerResult = 0;
 const container = document.querySelector('#container');
 const matchResult = document.createElement('div');
 const winner = document.createElement('div');
+const score = document.createElement('div');
 container.appendChild(matchResult);
+container.appendChild(score);
 container.appendChild(winner);
+
 
 
 function getComputerChoice() {
@@ -46,8 +49,7 @@ function playRound(computerSelection, playerSelection) {
 }
 
 let playGame = () => {
-    
-    
+    winner.textContent = '';
     getComputerChoice();
     console.log('player: ', playerSelection);
     console.log('comp:', computerSelection);
@@ -78,6 +80,7 @@ let playGame = () => {
     // calculate the final game results
     console.log("player results: ", playerResult);
     console.log("computer results : ", computerResult);
+    score.textContent = "Player : " + playerResult + " Computer : " + computerResult;
 };
 
 const rock = document.querySelector('#rock');
